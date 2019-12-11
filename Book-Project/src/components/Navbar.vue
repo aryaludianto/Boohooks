@@ -19,6 +19,10 @@
       </div>
       <a href="#random">Random</a>
     </div>
+    <div class="keyword">
+      <p>Search By :</p>
+      <input v-model="keyword" placeholder="keyword" v-on:keyup.enter="onSubmit(keyword)" />
+    </div>
   </div>
 </template>
 
@@ -31,40 +35,15 @@ export default Vue.extend({
     author: []
   },
   data() {
-    return {};
+    return {
+      keyword: null
+    };
+  },
+  methods: {
+    onSubmit(e: String) {
+      this.$emit("submit", e);
+    }
   }
-  // created() {
-  //   // fetch the data when the view is created and the data is
-  //   // already being observed
-  //   this.fetchData();
-  // },
-  // watch: {
-  //   // call again the method if the route changes
-  //   $route: "fetchData"
-  // },
-  // methods: {
-  //   fetchData() {
-  //     this.error = this.categories = null;
-  //     this.loading = true;
-  //     // replace `getPost` with your data fetching util / API wrapper
-  //     fetch("https://www.googleapis.com/books/v1/volumes?q=search+terms", {
-  //       method: "GET"
-  //       // ,
-  //       // headers: { "X-API-Key": "yDopPricaMTxYJvgYSF3d1dah1k2TlgaijneYq1G" }
-  //     })
-  //       .then(response => {
-  //         if (response.ok) {
-  //           return response.json();
-  //         } else throw new Error(response.statusText);
-  //       })
-  //       .then(data => {
-  //         this.categories = data.items;
-  //       })
-  //       .catch(err => {
-  //         this.error = err.toString();
-  //       });
-  //   }
-  // }
 });
 </script>
 
@@ -146,5 +125,15 @@ export default Vue.extend({
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.keyword {
+  display: flex;
+  flex-direction: row;
+  align-items: auto;
+}
+
+.keyword input {
+  margin: 3% 0;
 }
 </style>

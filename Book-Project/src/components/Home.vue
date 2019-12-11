@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Navbar></Navbar>
+    <Navbar @submit="onEnterNav"></Navbar>
     <Book v-bind:books="categories" v-bind:keyword="keyword"></Book>
     <!-- <h1>{{$log(categories)}}</h1> -->
     <Footer></Footer>
@@ -26,7 +26,8 @@ export default Vue.extend({
       loading: false,
       categories: null,
       error: null,
-      keyword: "all"
+      keyword: "all",
+      url: "https://www.googleapis.com/books/v1/volumes?q="
     };
   },
   created() {
@@ -44,7 +45,7 @@ export default Vue.extend({
       this.error = this.categories = null;
       this.loading = true;
       // replace `getPost` with your data fetching util / API wrapper
-      fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.keyword}`, {
+      fetch(`${this.url}${this.keyword}`, {
         method: "GET"
         // ,
         // headers: { "X-API-Key": "yDopPricaMTxYJvgYSF3d1dah1k2TlgaijneYq1G" }
@@ -64,6 +65,10 @@ export default Vue.extend({
         .catch(err => {
           this.error = err.toString();
         });
+    },
+    onEnterNav(val) {
+      this.keyword = val;
+      this.fetchData();
     }
   },
   computed: {

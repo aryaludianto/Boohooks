@@ -9,14 +9,14 @@
       <div class="container">
         <h1>Boohooks list of keyword "{{keyword}}"</h1>
         <br />
-        <div class="choose">
+        <!-- <div class="choose">
           <a href="#list-th">
             <i class="fa fa-th-list" aria-hidden="true"></i>
           </a>
           <a href="#large-th">
             <i class="fa fa-th-large" aria-hidden="true"></i>
           </a>
-        </div>
+        </div> -->
         <div class="books-container">
           <div id="list-th" v-for="(book, index ) in books" :key="index">
             <div class="book read">

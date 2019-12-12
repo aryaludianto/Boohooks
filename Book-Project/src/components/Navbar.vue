@@ -10,11 +10,17 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
-          <a
-            v-for="(key, index) in author"
+          <!-- <a
+            v-for="(category, index) in categories"
             :key="index"
             v-bind:value="index"
-          >{{key.volumeInfo.title}}</a>
+          >{{category.volumeInfo.categories ? category.volumeInfo.categories[0] : null }}</a>-->
+
+          <a
+            v-for="category in filteredCategories"
+            :key="category"
+            v-bind:value="category"
+          >{{category }}</a>
         </div>
       </div>
       <a href="#random">Random</a>
@@ -32,7 +38,7 @@ import Vue from "vue";
 export default Vue.extend({
   name: "Navbar",
   props: {
-    author: []
+    categories: Array
   },
   data() {
     return {
@@ -42,6 +48,18 @@ export default Vue.extend({
   methods: {
     onSubmit(e: String) {
       this.$emit("submit", e);
+    }
+  },
+  computed: {
+    filteredCategories() {
+      let filtered = [];
+      Object.values(this.categories).map(function(data) {
+        data.volumeInfo.categories &&
+          filtered.push(data.volumeInfo.categories[0]);
+      });
+
+      console.log(filtered);
+      return filtered;
     }
   }
 });
@@ -61,7 +79,7 @@ export default Vue.extend({
 .navbar {
   margin: 0;
   position: fixed;
-  overflow: hidden;
+  /* overflow: hidden; */
   top: 0;
   width: 100%;
   height: 7.5%;

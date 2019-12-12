@@ -24,12 +24,11 @@ export default Vue.extend({
 }
 
 .footer {
-  margin: 0;
-  position: fixed;
+  margin-bottom: 0;
   width: 100%;
-  height: 7.5%;
+  height: 100px;
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 8px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   flex-direction: row;
   align-items: center;

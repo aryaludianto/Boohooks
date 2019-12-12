@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <Navbar @submit="onEnterNav"></Navbar>
+    <Navbar @submit="onEnterNav" v-bind:categories="categories"></Navbar>
+    <loading
+      :active.sync="loading"
+    ></loading>
+
     <Book v-bind:books="categories" v-bind:keyword="keyword"></Book>
     <!-- <h1>{{$log(categories)}}</h1> -->
     <Footer></Footer>
@@ -12,13 +16,16 @@ import Vue from "vue";
 import Navbar from "./Navbar.vue";
 import Book from "./Book.vue";
 import Footer from "./Footer";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 export default Vue.extend({
   name: "Home",
   components: {
     Navbar,
     Book,
-    Footer
+    Footer,
+    Loading
   },
   props: {},
   data() {
@@ -58,9 +65,7 @@ export default Vue.extend({
         })
         .then(data => {
           this.categories = data.items;
-          data.items.forEach(item => {
-            // console.log(item.volumeInfo.imageLinks.thumbnail)
-          });
+          this.loading = false;
         })
         .catch(err => {
           this.error = err.toString();

@@ -1,9 +1,7 @@
 <template>
   <div class="home">
     <Navbar @submit="onEnterNav" v-bind:categories="categories"></Navbar>
-    <loading
-      :active.sync="loading"
-    ></loading>
+    <loading :active.sync="loading"></loading>
 
     <Book v-bind:books="categories" v-bind:keyword="keyword"></Book>
     <!-- <h1>{{$log(categories)}}</h1> -->

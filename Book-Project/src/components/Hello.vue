@@ -61,15 +61,15 @@ export default Vue.extend({
   //         this.error = err.toString();
   //       });
 
-      // getPost(this.$route.params.id, (err, post) => {
-      //   this.loading = false;
-      //   if (err) {
-      //     this.error = err.toString();
-      //   } else {
-      //     this.post = post;
-      //   }
-      // });
-    // }
+  // getPost(this.$route.params.id, (err, post) => {
+  //   this.loading = false;
+  //   if (err) {
+  //     this.error = err.toString();
+  //   } else {
+  //     this.post = post;
+  //   }
+  // });
+  // }
   // }
 });
 </script>

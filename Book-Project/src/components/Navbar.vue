@@ -1,6 +1,8 @@
 <template>
   <div class="navbar">
-    <h2 class="title">Boohooks</h2>
+    <!-- <router-link to="/"> -->
+      <h2 class="title">Boohooks</h2>
+    <!-- </router-link> -->
 
     <div class="nav-content">
       <a href="/">Home</a>
@@ -10,17 +12,18 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
-          <!-- <a
+          <a
             v-for="(category, index) in categories"
             :key="index"
             v-bind:value="index"
-          >{{category.volumeInfo.categories ? category.volumeInfo.categories[0] : null }}</a>-->
+          >{{category.volumeInfo.categories ? category.volumeInfo.categories[0] : null }}</a>
 
-          <a
+          <!-- <a
             v-for="category in filteredCategories"
             :key="category"
             v-bind:value="category"
-          >{{category }}</a>
+            >{{ category && category }}</a
+          >-->
         </div>
       </div>
       <a href="#random">Random</a>
@@ -52,14 +55,13 @@ export default Vue.extend({
   },
   computed: {
     filteredCategories() {
-      let filtered = [];
-      Object.values(this.categories).map(function(data) {
-        data.volumeInfo.categories &&
-          filtered.push(data.volumeInfo.categories[0]);
-      });
-
-      console.log(filtered);
-      return filtered;
+      // let filtered: Array<String> = [];
+      // Object.values(this.categories).map(data => {
+      //   data.volumeInfo.categories &&
+      //     filtered.push(data.volumeInfo.categories[0]);
+      // });
+      // console.log(filtered);
+      // return filtered;
     }
   }
 });

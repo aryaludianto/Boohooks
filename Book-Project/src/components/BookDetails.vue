@@ -2,19 +2,19 @@
   <div class="book-detail">
     <Navbar></Navbar>
     <div class="body">
-      <div class="details">
+      <div class="details" :class="show.className">
         <div class="head">
           <h3>{{ bookDetails.volumeInfo.title }} | By</h3>
           <h3 v-for="author in bookDetails.volumeInfo.authors" :key="author">{{author}}</h3>
         </div>
         <div class="desc">
           <p>Published: {{bookDetails.volumeInfo.publishedDate}}</p>
-          <p>Rating : {{bookDetails.volumeInfo.maturityRating}}</p>
+          <!-- <p>Rating : {{bookDetails.volumeInfo.maturityRating}}</p> -->
           <p>Page : {{bookDetails.volumeInfo.pageCount}} Pages</p>
-          <p>{{bookDetails.volumeInfo.description}}</p>
+          <p>" {{bookDetails.volumeInfo.description}} "</p>
         </div>
-        <div class="show-more">
-          <p>{{show}}</p>
+        <div class="show-more" v-on:click="dropButton">
+          <p>{{show.text}}</p>
         </div>
       </div>
       <div class="book read">
@@ -69,7 +69,7 @@ export default Vue.extend({
       url: "https://www.googleapis.com/books/v1/volumes?q=",
       authorBasedBooks: null,
       booksAuthor: Array,
-      show: "Show more"
+      show: { text: "Show more", className: "" }
     };
   },
   created() {
@@ -85,11 +85,8 @@ export default Vue.extend({
     fetchData() {
       this.error = this.authorBasedBooks = null;
       this.loading = true;
-      // replace `getPost` with your data fetching util / API wrapper
       fetch(`${this.url}${this.bookDetails.volumeInfo.authors[0]}`, {
         method: "GET"
-        // ,
-        // headers: { "X-API-Key": "yDopPricaMTxYJvgYSF3d1dah1k2TlgaijneYq1G" }
       })
         .then(response => {
           if (response.ok) {
@@ -109,6 +106,11 @@ export default Vue.extend({
         .catch(err => {
           this.error = err.toString();
         });
+    },
+    dropButton() {
+      this.show.text === "Show more"
+        ? (this.show = { text: "Close", className: "more" })
+        : (this.show = { text: "Show more", className: "" });
     }
   },
   computed: {
@@ -138,7 +140,6 @@ export default Vue.extend({
 .desc {
   padding: 2%;
   overflow: hidden;
-  
 }
 
 .desc p {
@@ -148,7 +149,7 @@ export default Vue.extend({
 }
 
 .details {
-  display: inline-block;
+  display: grid;
   width: 500px;
   height: 360px;
   box-shadow: 0 0 20px #aaa;
@@ -156,6 +157,10 @@ export default Vue.extend({
   padding: 0 0 10px;
   vertical-align: top;
   transition: height 1s;
+}
+
+.more {
+  height: 600px;
 }
 
 .book-detail {
@@ -307,7 +312,11 @@ zoom on click
   margin-top: 8%;
 }
 
-.show-more {
-  /* position: fixed; */
+.show-more p {
+  color: #41b883;
+}
+
+p.title {
+  color: #41b883;
 }
 </style>

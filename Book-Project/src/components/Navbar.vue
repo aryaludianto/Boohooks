@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <!-- <router-link to="/"> -->
-      <h2 class="title">Boohooks</h2>
+    <h2 class="title">Boohooks</h2>
     <!-- </router-link> -->
 
     <div class="nav-content">
@@ -12,18 +12,17 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
-          <a
+          <!-- <a
             v-for="(category, index) in categories"
             :key="index"
             v-bind:value="index"
-          >{{category.volumeInfo.categories ? category.volumeInfo.categories[0] : null }}</a>
+          >{{category.volumeInfo.categories ? category.volumeInfo.categories[0] : null }}</a>-->
 
-          <!-- <a
+          <a
             v-for="category in filteredCategories"
-            :key="category"
+            :key="category" v-on:click="onClick(category)"
             v-bind:value="category"
-            >{{ category && category }}</a
-          >-->
+          >{{ category && category }}</a>
         </div>
       </div>
       <a href="#random">Random</a>
@@ -41,7 +40,7 @@ import Vue from "vue";
 export default Vue.extend({
   name: "Navbar",
   props: {
-    categories: Array
+    data: Array
   },
   data() {
     return {
@@ -51,17 +50,28 @@ export default Vue.extend({
   methods: {
     onSubmit(e: String) {
       this.$emit("submit", e);
+    },
+    onClick(e: String){
+      this.$emit("click", e);
+
     }
   },
   computed: {
     filteredCategories() {
-      // let filtered: Array<String> = [];
-      // Object.values(this.categories).map(data => {
-      //   data.volumeInfo.categories &&
-      //     filtered.push(data.volumeInfo.categories[0]);
-      // });
-      // console.log(filtered);
-      // return filtered;
+      let filtered: Array<String> = [];
+      this.data &&
+        Object.values(this.data).map(data => {
+          data.volumeInfo.categories !== undefined &&
+            filtered.push(data.volumeInfo.categories[0]);
+        });
+      let arr = filtered.reduce(
+        (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
+        []
+      );
+
+      arr.splice(0,0,"All")
+
+      return arr;
     }
   }
 });

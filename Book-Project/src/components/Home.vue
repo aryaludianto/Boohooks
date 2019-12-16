@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <Navbar @submit="onEnterNav" v-bind:categories="categories"></Navbar>
+    <Navbar @submit="onEnterNav" @click="onClickNav" v-bind:data="data"></Navbar>
     <loading :active.sync="loading"></loading>
 
-    <Book v-bind:books="categories" v-bind:keyword="keyword"></Book>
+    <Book v-bind:books="displayData" v-bind:keyword="keyword"></Book>
     <!-- <h1>{{$log(categories)}}</h1> -->
     <Footer></Footer>
   </div>
@@ -29,9 +29,10 @@ export default Vue.extend({
   data() {
     return {
       loading: false,
-      categories: null,
+      data: null,
       error: null,
       keyword: "all",
+      filterBy: null,
       url: "https://www.googleapis.com/books/v1/volumes?q="
     };
   },
@@ -62,7 +63,7 @@ export default Vue.extend({
           } else throw new Error(response.statusText);
         })
         .then(data => {
-          this.categories = data.items;
+          this.data = data.items;
           this.loading = false;
         })
         .catch(err => {
@@ -72,12 +73,25 @@ export default Vue.extend({
     onEnterNav(val) {
       this.keyword = val;
       this.fetchData();
+    },
+    onClickNav(val) {
+      this.filterBy = val;
     }
   },
   computed: {
-    // testPrintState: function() {
-    //   console.log(this.categories);
-    // }
+    displayData() {
+      let filtered =
+        (this.filterBy != null) && (this.filterBy != "All") 
+          ? this.data &&
+            Object.values(this.data).filter(
+              data =>
+                data.volumeInfo.categories != undefined &&
+                data.volumeInfo.categories[0] === this.filterBy
+            )
+          : this.data;
+
+      return filtered;
+    }
   }
 });
 </script>

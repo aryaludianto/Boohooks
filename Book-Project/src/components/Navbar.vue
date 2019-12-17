@@ -8,7 +8,7 @@
       <a href="/">Home</a>
       <div class="dropdown">
         <button class="dropbtn">
-          Categories
+          Sort By Categories
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
@@ -20,7 +20,8 @@
 
           <a
             v-for="category in filteredCategories"
-            :key="category" v-on:click="onClick(category)"
+            :key="category"
+            v-on:click="onClick(category)"
             v-bind:value="category"
           >{{ category && category }}</a>
         </div>
@@ -51,9 +52,8 @@ export default Vue.extend({
     onSubmit(e: String) {
       this.$emit("submit", e);
     },
-    onClick(e: String){
+    onClick(e: String) {
       this.$emit("click", e);
-
     }
   },
   computed: {
@@ -69,7 +69,7 @@ export default Vue.extend({
         []
       );
 
-      arr.splice(0,0,"All")
+      arr.splice(0, 0, "All");
 
       return arr;
     }
@@ -108,6 +108,7 @@ export default Vue.extend({
   color: black;
   text-align: center;
   padding: 14px 16px;
+  /* padding: auto; */
   text-decoration: none;
 }
 
@@ -122,6 +123,7 @@ export default Vue.extend({
   outline: none;
   color: black;
   padding: 14px 16px;
+  padding: auto;
   background-color: inherit;
   font-family: inherit;
   margin: 0;
@@ -129,7 +131,7 @@ export default Vue.extend({
 
 .navbar a:hover,
 .dropdown:hover .dropbtn {
-  background-color: pink;
+  background-color: #ddd;
 }
 
 .dropdown-content {
@@ -144,6 +146,7 @@ export default Vue.extend({
   float: none;
   color: black;
   padding: 12px 16px;
+  /* padding: auto; */
   text-decoration: none;
   display: block;
   text-align: left;
@@ -164,6 +167,31 @@ export default Vue.extend({
 }
 
 .keyword input {
-  margin: 3% 0;
+  margin: 5% 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .title {
+    /* background-color: lightblue; */
+    margin-left: 4%;
+  }
+
+  .nav-content {
+    display: none;
+  }
+
+  .keyword p {
+    font-size: 10px;
+    width: 100%;
+    margin: auto 0 auto 10px;
+   text-align: right;
+  }
+
+  .keyword input {
+    /* display: flex; */
+    width: 100%;
+    height: 100%;
+    margin-right:4%; 
+  }
 }
 </style>

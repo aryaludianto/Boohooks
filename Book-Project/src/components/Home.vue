@@ -1,11 +1,10 @@
 <template>
   <div class="home">
     <Navbar @submit="onEnterNav" @click="onClickNav" v-bind:data="data"></Navbar>
-    <loading :active.sync="loading"></loading>
-
     <Book v-bind:books="displayData" v-bind:keyword="keyword"></Book>
     <!-- <h1>{{$log(categories)}}</h1> -->
     <Footer></Footer>
+    <loading :active.sync="loading"></loading>
   </div>
 </template>
 
@@ -81,7 +80,7 @@ export default Vue.extend({
   computed: {
     displayData() {
       let filtered =
-        (this.filterBy != null) && (this.filterBy != "All") 
+        this.filterBy != null && this.filterBy != "All"
           ? this.data &&
             Object.values(this.data).filter(
               data =>
@@ -101,5 +100,7 @@ export default Vue.extend({
   margin: 0;
   height: 100%;
   width: 100%;
+  /* display:grid;
+  grid-template-rows: 20% 80%; */
 }
 </style>

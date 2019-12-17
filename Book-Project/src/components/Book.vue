@@ -1,22 +1,10 @@
 <template>
   <div class="books">
-    <!-- <div v-for="(key, index) in books" :key="index"> -->
-    <!-- <p>{{key.volumeInfo.imageLinks.smallThumbnail}}</p> -->
-    <!-- <img v-bind:src="key.volumeInfo.imageLinks" /> -->
-    <!-- <img v-bind:src="key.imageLinks.thumbnail" /> -->
-
     <div id="large-th">
       <div class="container">
-        <h1>Boohooks list of keyword "{{ keyword }}"</h1>
+        <h1 v-if="keyword === 'all'">Welcome to Boohooks!</h1>
+        <h2 v-else>Boohooks list of "{{ keyword }}"</h2>
         <br />
-        <!-- <div class="choose">
-          <a href="#list-th">
-            <i class="fa fa-th-list" aria-hidden="true"></i>
-          </a>
-          <a href="#large-th">
-            <i class="fa fa-th-large" aria-hidden="true"></i>
-          </a>
-        </div>-->
         <div class="books-container">
           <div id="list-th" v-for="(book, index) in books" :key="index">
             <router-link :to="{ name: 'BookDetails', params: {bookDetails: book } }">
@@ -74,7 +62,7 @@ export default Vue.extend({
 <style scoped>
 .books {
   /* display:flex;  */
-  margin: 10% auto;
+  margin: 7.5% auto;
   width: 100%;
   /* padding: 0 5% 0; */
   display: flex;
@@ -223,7 +211,6 @@ zoom on click
 .description p {
   margin-top: 8%;
   text-decoration: none;
-  
 }
 
 @-webkit-keyframes swing {
@@ -291,6 +278,35 @@ zoom on click
 
 router-link {
   text-decoration: none;
+}
 
+@media only screen and (max-width: 600px) {
+
+  .books{
+    margin-top:10%;
+  }
+
+  .container {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .book {
+    width: 110px;
+    height: 198px;
+    box-shadow: 0 0 20px #aaa;
+    margin: 25px;
+    padding: 10px 10px 0 10px;
+    vertical-align: top;
+    transition: height 1s;
+  }
+
+  p.title {
+    font-size: 10px;
+  }
+
+  .container h1{
+    font-size: 30px;
+  }
 }
 </style>

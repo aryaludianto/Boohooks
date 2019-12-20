@@ -17,6 +17,12 @@ export default new Router({
       name: "BookDetails",
       component: () => import("../src/components/BookDetails.vue"),
       props: true
+    },
+    {
+      path: "/randomPage",
+      name: "RandomPage",
+      component: () => import("../src/components/Random.vue"),
+      props: true
     }
   ]
 });

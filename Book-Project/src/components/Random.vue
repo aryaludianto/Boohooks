@@ -1,6 +1,16 @@
 <template>
-  <div class="home">
-    <Navbar @submit="onEnterNav" @click="onClickNav" v-bind:data="data"></Navbar>
+  <div class="random">
+    <Navbar
+      @submit="onEnterNav"
+      @click="onClickNav"
+      v-bind:data="data"
+    ></Navbar>
+    <div class="randomizer">
+      <h1>Random Book list</h1>
+      <p>click below to randomize the list</p>
+      <button v-on:click="randomBtn">Randomizer</button>
+    </div>
+
     <Book v-bind:books="displayData" v-bind:keyword="keyword"></Book>
     <Footer></Footer>
     <loading :active.sync="loading"></loading>
@@ -16,7 +26,7 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 
 export default Vue.extend({
-  name: "Home",
+  name: "Random",
   components: {
     Navbar,
     Book,
@@ -31,13 +41,70 @@ export default Vue.extend({
       error: null,
       keyword: "all",
       filterBy: null,
-      url: "https://www.googleapis.com/books/v1/volumes?q="
+      url: "https://www.googleapis.com/books/v1/volumes?q=",
+      words: [
+        "diary",
+        "bottle",
+        "water",
+        "packet",
+        "chewing gum",
+        "tissue",
+        "glasses",
+        "watch",
+        "sweet",
+        "photo",
+        "camera",
+        "stamp",
+        "postcard",
+        "dictionary",
+        "coin",
+        "brush",
+        "credit card",
+        "identity card",
+        "key",
+        "mobile phone",
+        "phone card",
+        "wallet",
+        "button",
+        "umbrella",
+        "pen",
+        "pencil",
+        "lighter",
+        "cigarette",
+        "match",
+        "lipstick",
+        "purse",
+        "case",
+        "clip",
+        "scissors",
+        "rubber",
+        "file",
+        "banknote",
+        "passport",
+        "driving licence",
+        "comb",
+        "notebook",
+        "laptop",
+        "rubbish",
+        "mirror",
+        "painkiller",
+        "sunscreen",
+        "toothbrush",
+        "headphone",
+        "player",
+        "battery",
+        "light bulb",
+        "bin",
+        "newspaper",
+        "magazine",
+        "alarm clock"
+      ]
     };
   },
   created() {
     // fetch the data when the view is created and the data is
     // already being observed
-    //Function for fetching data from Googlebooks API
+    this.randomizer();
     this.fetchData();
   },
   watch: {
@@ -48,11 +115,15 @@ export default Vue.extend({
     fetchData() {
       this.error = this.categories = null;
       this.loading = true;
+      // replace `getPost` with your data fetching util / API wrapper
       fetch(`${this.url}${this.keyword}`, {
         method: "GET"
+        // ,
+        // headers: { "X-API-Key": "yDopPricaMTxYJvgYSF3d1dah1k2TlgaijneYq1G" }
       })
         .then(response => {
           if (response.ok) {
+            // this.categories = response.json().items;
             return response.json();
           } else throw new Error(response.statusText);
         })
@@ -65,18 +136,23 @@ export default Vue.extend({
         });
     },
     onEnterNav(val) {
-      //function for retreive keyword from nav-bar and fetch API based on keyword from user
       this.keyword = val;
       this.fetchData();
     },
     onClickNav(val) {
-      //function for retreive filter value from nav-bar and diplay Book/Books based Filter categories from user
       this.filterBy = val;
+    },
+    randomizer() {
+      let result = this.words[Math.floor(Math.random() * this.words.length)];
+      this.keyword = result;
+    },
+    randomBtn() {
+      this.randomizer();
+      this.fetchData();
     }
   },
   computed: {
     displayData() {
-      //function for display Book/books based on filtered categories
       let filtered =
         this.filterBy != null && this.filterBy != "All"
           ? this.data &&
@@ -86,6 +162,7 @@ export default Vue.extend({
                 data.volumeInfo.categories[0] === this.filterBy
             )
           : this.data;
+
       return filtered;
     }
   }
@@ -93,11 +170,21 @@ export default Vue.extend({
 </script>
 
 <style>
-.home {
+.random {
   margin: 0;
   height: 100%;
   width: 100%;
   /* display:grid;
   grid-template-rows: 20% 80%; */
+}
+
+.randomizer {
+  margin-top: 10%;
+}
+
+@media only screen and (max-width: 600px) {
+  .randomizer {
+    margin-top: 20%;
+  }
 }
 </style>

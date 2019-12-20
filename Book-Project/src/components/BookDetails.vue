@@ -1,20 +1,33 @@
 <template>
   <div class="book-detail">
+    <!-- Nav-bar not returning anything at this point -->
     <Navbar></Navbar>
+    <!-- Book details will be shown below -->
     <div class="body">
       <div class="details" :class="show.className">
         <div class="head">
           <h3>{{ bookDetails.volumeInfo.title }} | By</h3>
-          <h3 v-for="author in bookDetails.volumeInfo.authors" :key="author">{{author}}</h3>
+          <h3 v-for="author in bookDetails.volumeInfo.authors" :key="author">{{ author }}</h3>
         </div>
         <div class="desc">
-          <p>Published: {{bookDetails.volumeInfo.publishedDate}}</p>
-          <!-- <p>Rating : {{bookDetails.volumeInfo.maturityRating}}</p> -->
-          <p>Page : {{bookDetails.volumeInfo.pageCount}} Pages</p>
-          <p>" {{bookDetails.volumeInfo.description}} "</p>
+          <p>Published: {{ bookDetails.volumeInfo.publishedDate }}</p>
+          <p>Page : {{ bookDetails.volumeInfo.pageCount }} Pages</p>
+          <a :href="bookDetails.volumeInfo.infoLink" target="_blank">
+            <p>Google books Link</p>
+          </a>
+          <p>
+            "
+            {{
+            bookDetails.volumeInfo.description[0]
+            ? bookDetails.volumeInfo.description
+            : noDesc
+            }}
+            "
+          </p>
         </div>
+        <!-- drop button for accordion div -->
         <div class="show-more" v-on:click="dropButton">
-          <p>{{show.text}}</p>
+          <p>{{ show.text }}</p>
         </div>
       </div>
       <div class="book read">
@@ -22,10 +35,10 @@
           <img
             class="cover-img"
             :src="
-                      bookDetails.volumeInfo.imageLinks
-                        ? bookDetails.volumeInfo.imageLinks.thumbnail
-                        : noCoverUrl
-                    "
+              bookDetails.volumeInfo.imageLinks
+                ? bookDetails.volumeInfo.imageLinks.thumbnail
+                : noCoverUrl
+            "
           />
         </div>
         <div class="description">
@@ -37,6 +50,7 @@
       </div>
     </div>
 
+    <!-- Book component to display 3 books related to the author -->
     <Book v-bind:books="booksAuthor"></Book>
 
     <Footer></Footer>
@@ -69,12 +83,14 @@ export default Vue.extend({
       url: "https://www.googleapis.com/books/v1/volumes?q=",
       authorBasedBooks: null,
       booksAuthor: Array,
-      show: { text: "Show more", className: "" }
+      show: { text: "Show more", className: "" },
+      noDesc: "No Description about this book"
     };
   },
   created() {
     // fetch the data when the view is created and the data is
     // already being observed
+    //Fetch data only related to the author of the book displayed on book details page
     this.fetchData();
   },
   watch: {
@@ -83,19 +99,22 @@ export default Vue.extend({
   },
   methods: {
     fetchData() {
-      this.error = this.authorBasedBooks = null;
+      this.error = this.authorBasedBooks;
+      //empty the result container
+      this.authorBasedBooks = null;
       this.loading = true;
+      //fetch data based on author's name
       fetch(`${this.url}${this.bookDetails.volumeInfo.authors[0]}`, {
         method: "GET"
       })
         .then(response => {
           if (response.ok) {
-            // this.categories = response.json().items;
             return response.json();
           } else throw new Error(response.statusText);
         })
         .then(data => {
           this.authorBasedBooks = data.items;
+          //Filter the result by only taking 3 top books out of 10 books provided
           let res = [];
           for (let i = 0; i < 3; i++) {
             res.push(this.authorBasedBooks[i]);
@@ -108,16 +127,13 @@ export default Vue.extend({
         });
     },
     dropButton() {
+      //Function to display dropdown button's text
       this.show.text === "Show more"
         ? (this.show = { text: "Close", className: "more" })
         : (this.show = { text: "Show more", className: "" });
     }
   },
-  computed: {
-    // testPrintState: function() {
-    //   console.log(this.categories);
-    // }
-  }
+  computed: {}
 });
 </script>
 
@@ -237,7 +253,13 @@ Book stuff
     max-width: 700px;
   }
   .book {
-    margin: 49px;
+    margin: 25px;
+  }
+}
+
+@media (max-width: 800px) {
+  .book {
+    margin: 10px;
   }
 }
 
@@ -318,5 +340,29 @@ zoom on click
 
 p.title {
   color: #41b883;
+}
+
+@media only screen and (max-width: 600px) {
+  .body {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .details {
+    display: grid;
+    width: 250px;
+    height: 360px;
+    -webkit-box-shadow: 0 0 20px #aaa;
+    box-shadow: 0 0 20px #aaa;
+    margin: 25px auto;
+    padding: 0 0 10px;
+    vertical-align: top;
+    -webkit-transition: height 1s;
+    transition: height 1s;
+  }
+
+  .more {
+    height: 700px;
+  }
 }
 </style>

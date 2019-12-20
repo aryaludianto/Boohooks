@@ -21,7 +21,9 @@
         <!-- book container for books from APi  -->
         <div class="books-container">
           <div id="list-th" v-for="(book, index) in books" :key="index">
-            <router-link :to="{ name: 'BookDetails', params: { bookDetails: book } }">
+            <router-link
+              :to="{ name: 'BookDetails', params: { bookDetails: book } }"
+            >
               <div class="book read">
                 <img
                   class="cover"

@@ -22,7 +22,11 @@
             >{{ category && category }}</a>
           </div>
         </div>
-        <a href="/randomPage" v-bind:class="activeStatus.random">Random</a>
+        <router-link to="/randomPage" v-bind:class="activeStatus.random">
+          <!-- <a href="/randomPage" > -->
+          Random
+          <!-- </a> -->
+        </router-link>
       </div>
       <div class="keyword" v-if="this.$route.name == 'home'">
         <p>Search By :</p>
@@ -49,7 +53,12 @@
             >{{ category && category }}</a>
           </div>
         </div>
-        <a href="/randomPage" v-bind:class="activeStatus.random">Random</a>
+        <!-- <a href="/randomPage" v-bind:class="activeStatus.random">Random</a> -->
+        <router-link to="/randomPage" v-bind:class="activeStatus.random">
+          <!-- <a href="/randomPage" > -->
+          Random
+          <!-- </a> -->
+        </router-link>
       </div>
       <div class="keyword" v-if="this.$route.name == 'home'">
         <p>Search By :</p>
@@ -104,12 +113,13 @@ export default Vue.extend({
       //Function for filter out recursive categories and display the categories in the nav-bar
       let filtered: Array<String> = [];
       this.data &&
-        Object.values(this.data).map((book: Object) => {
+        Object.values(this.data).map((book: any) => {
           book.volumeInfo.categories !== undefined &&
             filtered.push(book.volumeInfo.categories[0]);
         });
       let arr = filtered.reduce(
-        (unique, item) => (unique.includes(item) ? unique : [...unique, item]),
+        (unique: any, item: any) =>
+          unique.includes(item) ? unique : [...unique, item],
         []
       );
       arr.splice(0, 0, "All");

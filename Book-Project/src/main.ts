@@ -5,7 +5,6 @@ import router from "./router";
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
-// Vue.prototype.$log = console.log.bind(console);
 
 new Vue({
   router,

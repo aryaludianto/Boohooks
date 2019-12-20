@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <Navbar @submit="onEnterNav" @click="onClickNav" v-bind:data="data"></Navbar>
+    <Navbar
+      @submit="onEnterNav"
+      @click="onClickNav"
+      v-bind:data="data"
+    ></Navbar>
     <Book v-bind:books="displayData" v-bind:keyword="keyword"></Book>
     <Footer></Footer>
     <loading :active.sync="loading"></loading>

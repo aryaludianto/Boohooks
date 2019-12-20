@@ -1,4 +1,4 @@
-# animal-facts-project
+# Boohooks-project
 
 ## Project setup
 ```

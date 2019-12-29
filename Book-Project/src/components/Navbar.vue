@@ -19,7 +19,8 @@
               :key="category"
               v-on:click="onClick(category)"
               v-bind:value="category"
-            >{{ category && category }}</a>
+              >{{ category && category }}</a
+            >
           </div>
         </div>
         <router-link to="/randomPage" v-bind:class="activeStatus.random">
@@ -30,7 +31,11 @@
       </div>
       <div class="keyword" v-if="this.$route.name == 'home'">
         <p>Search By :</p>
-        <input v-model="keyword" placeholder="keyword" v-on:keyup.enter="onSubmit(keyword)" />
+        <input
+          v-model="keyword"
+          placeholder="keyword"
+          v-on:keyup.enter="onSubmit(keyword)"
+        />
       </div>
     </div>
 
@@ -50,7 +55,8 @@
               :key="category"
               v-on:click="onClick(category)"
               v-bind:value="category"
-            >{{ category && category }}</a>
+              >{{ category && category }}</a
+            >
           </div>
         </div>
         <!-- <a href="/randomPage" v-bind:class="activeStatus.random">Random</a> -->
@@ -62,7 +68,11 @@
       </div>
       <div class="keyword" v-if="this.$route.name == 'home'">
         <p>Search By :</p>
-        <input v-model="keyword" placeholder="keyword" v-on:keyup.enter="onSubmit(keyword)" />
+        <input
+          v-model="keyword"
+          placeholder="keyword"
+          v-on:keyup.enter="onSubmit(keyword)"
+        />
       </div>
     </div>
   </div>

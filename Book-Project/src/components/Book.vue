@@ -21,18 +21,14 @@
         <!-- book container for books from APi  -->
         <div class="books-container">
           <div id="list-th" v-for="(book, index) in books" :key="index">
-            <router-link
-              :to="{ name: 'BookDetails', params: { bookDetails: book } }"
-            >
-              <div class="book read">
-                <img
-                  class="cover"
-                  :src="
-                    book.volumeInfo.imageLinks
-                      ? book.volumeInfo.imageLinks.thumbnail
-                      : noCoverUrl
-                  "
-                />
+            <router-link :to="{ name: 'BookDetails', params: { bookDetails: book } }">
+              <div v-if="book.volumeInfo.imageLinks" class="book read">
+                <img class="cover" :src="book.volumeInfo.imageLinks.thumbnail" />
+                <p class="description title">{{ book.volumeInfo.title }}</p>
+              </div>
+
+              <div v-else class="book read">
+                <img class="cover" src="./img/noCover.png" />
                 <p class="description title">{{ book.volumeInfo.title }}</p>
               </div>
             </router-link>
@@ -138,7 +134,7 @@ Book stuff
 }
 
 .welcome {
-  margin-top: 10%;
+  margin-top: 0;
 }
 
 @media (max-width: 941px) {
@@ -162,6 +158,7 @@ Book stuff
     display: block;
     margin: 0 auto;
     margin-top: 50px;
+    margin: 25px;
   }
   .cover {
   }
@@ -291,7 +288,19 @@ router-link {
   text-decoration: none;
 }
 
+/* 
+@media only screen and (max-width: 847px){
+  /* div.book.read{
+    margin: auto;
+  } */
+
+/* } */
+
 @media only screen and (max-width: 600px) {
+  .welcome {
+    margin-top: 10%;
+  }
+
   .books {
     margin-top: 10%;
     min-height: 75vh;

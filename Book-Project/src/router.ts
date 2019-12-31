@@ -34,7 +34,7 @@
 // import VueRouter from "vue-router";
 // export const router: VueRouter = new VueRouter({
 //   // mode: "history",
-  // base: process.env.BASE_URL,
+// base: process.env.BASE_URL,
 //   routes: [
 //     {
 //       path: "/",
@@ -56,15 +56,12 @@
 //   ]
 // });
 
-
-
-
 import Vue from "vue";
 import Router from "vue-router";
 
 Vue.use(Router);
 
-export const router =  new Router({
+export const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -88,22 +85,20 @@ export const router =  new Router({
   ]
 });
 
+// function getRoutesList(routes, pre) {
+//   return routes.reduce((array, route) => {
+//     const path = `${pre}${route.path}`;
 
+//     if (route.path !== '*') {
+//       array.push(path);
+//     }
 
-function getRoutesList(routes, pre) {
-  return routes.reduce((array, route) => {
-    const path = `${pre}${route.path}`;
+//     if (route.children) {
+//       array.push(...getRoutesList(route.children, `${path}/`));
+//     }
 
-    if (route.path !== '*') {
-      array.push(path);
-    }
+//     return array;
+//   }, []);
+// }
 
-    if (route.children) {
-      array.push(...getRoutesList(route.children, `${path}/`));
-    }
-
-    return array;
-  }, []);
-}
-
-console.log(getRoutesList(router.options.routes, 'https://test-project-arya.web.app/'));
+// console.log(getRoutesList(router.options.routes, 'https://test-project-arya.web.app/'));

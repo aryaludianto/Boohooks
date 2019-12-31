@@ -21,9 +21,14 @@
         <!-- book container for books from APi  -->
         <div class="books-container">
           <div id="list-th" v-for="(book, index) in books" :key="index">
-            <router-link :to="{ name: 'BookDetails', params: { bookDetails: book } }">
+            <router-link
+              :to="{ name: 'BookDetails', params: { bookDetails: book } }"
+            >
               <div v-if="book.volumeInfo.imageLinks" class="book read">
-                <img class="cover" :src="book.volumeInfo.imageLinks.thumbnail" />
+                <img
+                  class="cover"
+                  :src="book.volumeInfo.imageLinks.thumbnail"
+                />
                 <p class="description title">{{ book.volumeInfo.title }}</p>
               </div>
 
@@ -116,6 +121,7 @@ Book stuff
   /* border: 2px solid gray; */
   height: 80%;
   overflow: hidden;
+  width: 100%;
 }
 
 .cover img {

@@ -1,10 +1,6 @@
 <template>
   <div class="random">
-    <Navbar
-      @submit="onEnterNav"
-      @click="onClickNav"
-      v-bind:data="data"
-    ></Navbar>
+    <Navbar @submit="onEnterNav" @click="onClickNav" v-bind:data="data"></Navbar>
     <div class="randomizer">
       <h1>Random Book list</h1>
       <p>click below to randomize the list</p>
@@ -106,6 +102,7 @@ export default Vue.extend({
     // already being observed
     this.randomizer();
     this.fetchData();
+    console.log(this.makeid(12));
   },
   watch: {
     // call again the method if the route changes
@@ -149,6 +146,18 @@ export default Vue.extend({
     randomBtn() {
       this.randomizer();
       this.fetchData();
+    },
+    makeid(length) {
+      var result = "";
+      var characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      var charactersLength = characters.length;
+      for (var i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
+      return result;
     }
   },
   computed: {

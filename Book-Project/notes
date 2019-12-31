@@ -1,0 +1,13 @@
+//devdependencies
+    "typescript": "~3.5.3",
+    "@vue/cli-plugin-typescript": "^4.1.0",
+    "@vue/eslint-config-typescript": "^4.0.0",
+
+
+    //extends
+      "@vue/typescript"
+,
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    }
+

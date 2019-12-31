@@ -1,12 +1,11 @@
 <template>
   <div class="navbar" v-bind:class="burgerBar">
-    <!-- Sorry for not using DRY method -->
-    <!-- below is navbar for mobile screen -->
-    <div class="mobile-res" v-bind:class="burgerBar">
+    <div class="desktop-res" v-bind:class="burgerBar">
+      <h2 class="title1">Boohooks</h2>
       <div class="nav" v-bind:class="burgerBar" v-on:click="burgerBarClick">
         <h2 class="title">Boohooks</h2>
       </div>
-      <div class="nav-content-res" v-bind:class="burgerBar">
+      <div class="nav-content nav-content-res" v-bind:class="burgerBar">
         <a href="/" v-bind:class="activeStatus.home">Home</a>
         <div class="dropdown">
           <button class="dropbtn">
@@ -19,60 +18,14 @@
               :key="category"
               v-on:click="onClick(category)"
               v-bind:value="category"
-              >{{ category && category }}</a
-            >
+            >{{ category && category }}</a>
           </div>
         </div>
-        <router-link to="/randomPage" v-bind:class="activeStatus.random">
-          <!-- <a href="/randomPage" > -->
-          Random
-          <!-- </a> -->
-        </router-link>
+        <router-link to="/randomPage" v-bind:class="activeStatus.random">Random</router-link>
       </div>
       <div class="keyword" v-if="this.$route.name == 'home'">
         <p>Search By :</p>
-        <input
-          v-model="keyword"
-          placeholder="keyword"
-          v-on:keyup.enter="onSubmit(keyword)"
-        />
-      </div>
-    </div>
-
-    <!-- below is navbar for Desktop screen -->
-    <div class="desktop-res">
-      <h2 class="title">Boohooks</h2>
-      <div class="nav-content">
-        <a href="/" v-bind:class="activeStatus.home">Home</a>
-        <div class="dropdown">
-          <button class="dropbtn">
-            Sort By Categories
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a
-              v-for="category in filteredCategories"
-              :key="category"
-              v-on:click="onClick(category)"
-              v-bind:value="category"
-              >{{ category && category }}</a
-            >
-          </div>
-        </div>
-        <!-- <a href="/randomPage" v-bind:class="activeStatus.random">Random</a> -->
-        <router-link to="/randomPage" v-bind:class="activeStatus.random">
-          <!-- <a href="/randomPage" > -->
-          Random
-          <!-- </a> -->
-        </router-link>
-      </div>
-      <div class="keyword" v-if="this.$route.name == 'home'">
-        <p>Search By :</p>
-        <input
-          v-model="keyword"
-          placeholder="keyword"
-          v-on:keyup.enter="onSubmit(keyword)"
-        />
+        <input v-model="keyword" placeholder="keyword" v-on:keyup.enter="onSubmit(keyword)" />
       </div>
     </div>
   </div>
@@ -87,7 +40,7 @@ export default Vue.extend({
     data: Array
   },
   created() {
-    // Provide on which page user is and decide which nav-bar buttons are active
+    //to determine which buttons are active
     this.$route.name === "home"
       ? (this.activeStatus = { home: "inactive", random: "" })
       : (this.activeStatus = { home: "", random: "inactive" });
@@ -103,7 +56,7 @@ export default Vue.extend({
   },
   methods: {
     onSubmit(e: String) {
-      // Function for submit keyword from nav-bar to home component
+      //to submit keyword from nav-bar to home component
       this.$emit("submit", e);
     },
     onClick(e: String) {
@@ -112,7 +65,7 @@ export default Vue.extend({
       this.burgerBarClick();
     },
     burgerBarClick() {
-      //Function for show and unshow mobile nav-bar menu
+      //Function to show and unshow mobile nav-bar menu
       this.burgerBar === ""
         ? (this.burgerBar = "active")
         : (this.burgerBar = "");
@@ -120,7 +73,7 @@ export default Vue.extend({
   },
   computed: {
     filteredCategories() {
-      //Function for filter out recursive categories and display the categories in the nav-bar
+      //Function to filter out recursive categories and display the categories in nav-bar
       let filtered: Array<String> = [];
       this.data &&
         Object.values(this.data).map((book: any) => {
@@ -147,24 +100,18 @@ export default Vue.extend({
 .title {
   margin-left: 2%;
   color: #41b883;
+  display: none;
 }
 
-.nav {
-  display: none;
+.title1 {
+  margin-left: 2%;
+  color: #41b883;
 }
 
 .nav-content {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.mobile-res {
-  display: none;
-}
-
-.nav-content-res {
-  display: none;
 }
 
 .navbar {
@@ -268,13 +215,23 @@ export default Vue.extend({
   }
 
   .title {
+    display: block;
     margin-left: 4%;
+    color: #41b883;
   }
-
-  .desktop-res {
+  .title1 {
     display: none;
   }
 
+  .desktop-res {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .desktop-res.active {
+    display: flex;
+    flex-direction: column;
+  }
   .navbar.active {
     height: 100%;
     display: block;
@@ -287,16 +244,6 @@ export default Vue.extend({
   .nav {
     display: flex;
     margin: auto auto auto 5%;
-    flex-direction: column;
-  }
-
-  .mobile-res {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .mobile-res.active {
-    display: flex;
     flex-direction: column;
   }
 
@@ -343,13 +290,10 @@ export default Vue.extend({
     border: none;
     outline: none;
     color: black;
-    /* padding: 14px 16px; */
     padding: auto;
     background-color: inherit;
     font-family: inherit;
     margin: 0 10% 0 10%;
-    /* text-align: center; */
-    /* width: 100%; */
   }
 
   .dropdown:hover {
@@ -366,8 +310,6 @@ export default Vue.extend({
     display: none;
     position: inherit;
     background-color: #f9f9f9;
-    /* min-width: 160px;
-    box-shadow: 0p x 8px 16px 0px rgba(0, 0, 0, 0.2); */
     overflow: hidden;
     z-index: 1;
   }
@@ -375,7 +317,6 @@ export default Vue.extend({
   .dropdown-content a {
     float: none;
     color: black;
-    /* padding: 12px 16px; */
     padding: auto;
     text-decoration: none;
     display: block;

@@ -69,18 +69,18 @@ export default Vue.extend({
         });
     },
     onEnterNav(val) {
-      //function for retreive keyword from nav-bar and fetch API based on keyword from user
+      //function to retreive keyword from nav-bar and fetch API based on keyword from user
       this.keyword = val;
       this.fetchData();
     },
     onClickNav(val) {
-      //function for retreive filter value from nav-bar and diplay Book/Books based Filter categories from user
+      //function to retreive filter value from nav-bar and diplay Book/Books based Filter categories from user
       this.filterBy = val;
     }
   },
   computed: {
     displayData() {
-      //function for display Book/books based on filtered categories
+      //function to display Book/books based on filtered categories
       let filtered =
         this.filterBy != null && this.filterBy != "All"
           ? this.data &&

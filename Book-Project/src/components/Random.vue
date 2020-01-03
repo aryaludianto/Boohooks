@@ -20,6 +20,7 @@ import Book from "./Book.vue";
 import Footer from "./Footer";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+let randomWords = require("random-words");
 
 export default Vue.extend({
   name: "Random",
@@ -37,64 +38,7 @@ export default Vue.extend({
       error: null,
       keyword: "all",
       filterBy: null,
-      url: "https://www.googleapis.com/books/v1/volumes?q=",
-      words: [
-        "diary",
-        "bottle",
-        "water",
-        "packet",
-        "chewing gum",
-        "tissue",
-        "glasses",
-        "watch",
-        "sweet",
-        "photo",
-        "camera",
-        "stamp",
-        "postcard",
-        "dictionary",
-        "coin",
-        "brush",
-        "credit card",
-        "identity card",
-        "key",
-        "mobile phone",
-        "phone card",
-        "wallet",
-        "button",
-        "umbrella",
-        "pen",
-        "pencil",
-        "lighter",
-        "cigarette",
-        "match",
-        "lipstick",
-        "purse",
-        "case",
-        "clip",
-        "scissors",
-        "rubber",
-        "file",
-        "banknote",
-        "passport",
-        "driving licence",
-        "comb",
-        "notebook",
-        "laptop",
-        "rubbish",
-        "mirror",
-        "painkiller",
-        "sunscreen",
-        "toothbrush",
-        "headphone",
-        "player",
-        "battery",
-        "light bulb",
-        "bin",
-        "newspaper",
-        "magazine",
-        "alarm clock"
-      ]
+      url: "https://www.googleapis.com/books/v1/volumes?q="
     };
   },
   created() {
@@ -102,7 +46,6 @@ export default Vue.extend({
     // already being observed
     this.randomizer();
     this.fetchData();
-    console.log(this.makeid(12));
   },
   watch: {
     // call again the method if the route changes
@@ -115,12 +58,9 @@ export default Vue.extend({
       // replace `getPost` with your data fetching util / API wrapper
       fetch(`${this.url}${this.keyword}`, {
         method: "GET"
-        // ,
-        // headers: { "X-API-Key": "yDopPricaMTxYJvgYSF3d1dah1k2TlgaijneYq1G" }
       })
         .then(response => {
           if (response.ok) {
-            // this.categories = response.json().items;
             return response.json();
           } else throw new Error(response.statusText);
         })
@@ -140,24 +80,11 @@ export default Vue.extend({
       this.filterBy = val;
     },
     randomizer() {
-      let result = this.words[Math.floor(Math.random() * this.words.length)];
-      this.keyword = result;
+      this.keyword = randomWords(1)[0];
     },
     randomBtn() {
       this.randomizer();
       this.fetchData();
-    },
-    makeid(length) {
-      var result = "";
-      var characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      var charactersLength = characters.length;
-      for (var i = 0; i < length; i++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * charactersLength)
-        );
-      }
-      return result;
     }
   },
   computed: {
@@ -183,8 +110,6 @@ export default Vue.extend({
   margin: 0;
   height: 100%;
   width: 100%;
-  /* display:grid;
-  grid-template-rows: 20% 80%; */
 }
 
 .randomizer {

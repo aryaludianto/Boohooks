@@ -155,6 +155,7 @@ export default Vue.extend({
 
 .head h3 {
   margin: 4%;
+  font-size: 200%;
 }
 
 .desc {
@@ -163,7 +164,7 @@ export default Vue.extend({
 }
 
 .desc p {
-  font-size: 215x;
+  font-size: 200%;
   text-align: left;
   margin: 3% 0;
 }
@@ -171,16 +172,14 @@ export default Vue.extend({
 .details {
   display: grid;
   width: 500px;
-  height: 360px;
+  height: 573px;
   box-shadow: 0 0 20px #aaa;
   margin: 25px;
   padding: 0 0 10px;
   vertical-align: top;
-  /* transition: height 1s; */
 }
 
 .more {
-  /* height: 600px; */
   height: 100%;
 }
 
@@ -212,8 +211,8 @@ Book stuff
 
 .book {
   display: inline-block;
-  width: 200px;
-  height: 360px;
+  width: 331px;
+  height: 573px;
   box-shadow: 0 0 20px #aaa;
   margin: 25px;
   padding: 10px 10px 0 10px;
@@ -221,10 +220,9 @@ Book stuff
   transition: height 1s;
   overflow: hidden;
 }
+
 /* star button */
 .book:after {
-  font-family: FontAwesome;
-  /* content: "\f006"; */
   font-size: 35px;
   position: relative;
   left: -0.1cm;
@@ -253,35 +251,6 @@ Book stuff
   font-size: auto;
 }
 
-@media (max-width: 941px) {
-  .container {
-    max-width: 700px;
-  }
-  .book {
-    margin: 25px;
-  }
-}
-
-@media (max-width: 800px) {
-  .book {
-    margin: 10px;
-  }
-}
-
-@media (max-width: 730px) {
-  .book {
-    display: block;
-    margin: 0 auto;
-    margin-top: 50px;
-  }
-  .cover {
-  }
-}
-
-/*********************************
-other
-**********************************/
-
 h1 {
   color: gray;
   text-align: center;
@@ -292,8 +261,6 @@ h1 {
 /**********************************
 display change
 ***********************************/
-/*book height smaller, cover opacity, move text onto cover and star too
-animate it */
 #list-th:target .book {
   height: 100px;
   width: 250px;
@@ -318,13 +285,6 @@ animate it */
   height: 390px;
 }
 
-/***********************************
-star animation
-***********************************/
-/***********************************
-zoom on click
-***********************************/
-
 .books-container {
   display: flex;
   flex-wrap: wrap;
@@ -333,6 +293,7 @@ zoom on click
 .description {
   height: 100%;
   width: 100%;
+  font-size: 175%;
 }
 
 .description p {
@@ -343,6 +304,83 @@ zoom on click
 .show-more p {
   color: #41b883;
   cursor: pointer;
+  font-size: 200%;
+}
+
+@media only screen and (max-width: 1900px) {
+  .book {
+    width: 200px;
+    height: 360px;
+    margin: 25px;
+    padding: 10px 10px 0 10px;
+    vertical-align: top;
+  }
+
+  .description {
+    font-size: 100%;
+  }
+
+  .head h3 {
+    margin: 4%;
+    font-size: 140%;
+  }
+
+  .desc p {
+    font-size: 100%;
+  }
+
+  .details {
+    width: 500px;
+    height: 360px;
+    margin: 25px;
+    vertical-align: top;
+  }
+
+  .desc p {
+    font-size: 100%;
+    text-align: left;
+    margin: 3% 0;
+  }
+
+  .show-more p {
+    font-size: 100%;
+  }
+
+  .more {
+    height: 100%;
+  }
+}
+
+@media (max-width: 941px) {
+  .container {
+    max-width: 700px;
+  }
+  .book {
+    margin: 25px;
+  }
+  .more {
+    height: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .book {
+    margin: 10px;
+  }
+  .more {
+    height: 100%;
+  }
+}
+
+@media (max-width: 730px) {
+  .book {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  .more {
+    height: 100%;
+  }
 }
 
 @media only screen and (max-width: 600px) {

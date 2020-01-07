@@ -7,7 +7,9 @@
       </div>
       <div class="nav-content nav-content-res" v-bind:class="burgerBar">
         <a href="/" v-bind:class="activeStatus.home">Home</a>
-        <router-link to="/randomPage" v-bind:class="activeStatus.random">Random</router-link>
+        <router-link to="/randomPage" v-bind:class="activeStatus.random"
+          >Random</router-link
+        >
 
         <div class="dropdown">
           <button class="dropbtn">
@@ -20,12 +22,17 @@
               :key="category"
               v-on:click="onClick(category)"
               v-bind:value="category"
-            >{{ category && category }}</a>
+              >{{ category && category }}</a
+            >
           </div>
         </div>
       </div>
       <div class="keyword" v-if="this.$route.name == 'home'">
-        <input v-model="keyword" placeholder="Search" v-on:keyup.enter="onSubmit(keyword)" />
+        <input
+          v-model="keyword"
+          placeholder="Search"
+          v-on:keyup.enter="onSubmit(keyword)"
+        />
       </div>
     </div>
   </div>
@@ -218,7 +225,6 @@ export default Vue.extend({
 
 .keyword p {
   width: 100px;
-
 }
 
 .keyword input {

@@ -58,10 +58,8 @@ export default Vue.extend({
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .books {
-  /* display:flex;  */
   margin: 7.5% auto;
   width: 100%;
-  /* padding: 0 5% 0; */
   display: flex;
   justify-content: center;
 }
@@ -88,8 +86,8 @@ Book stuff
 
 .book {
   display: inline-block;
-  width: 200px;
-  height: 360px;
+  width: 331px;
+  height: 573px;
   box-shadow: 0 0 20px #aaa;
   margin: 25px;
   padding: 10px 10px 0 10px;
@@ -132,41 +130,8 @@ Book stuff
 
 .welcome {
   margin-top: 0;
+  font-size: 200%;
 }
-
-@media (max-width: 941px) {
-  .books {
-    min-height: 100%;
-  }
-
-  .container {
-    max-width: 700px;
-  }
-  .book {
-    margin: 49px;
-  }
-}
-
-@media only screen and (max-width: 1900px) {
-}
-
-@media (max-width: 730px) {
-  .books {
-    min-height: 100%;
-  }
-  .book {
-    display: block;
-    margin: 0 auto;
-    margin-top: 50px;
-    margin: 25px;
-  }
-  .cover {
-  }
-}
-
-/*********************************
-other
-**********************************/
 
 h1 {
   color: gray;
@@ -231,8 +196,9 @@ p.description.title {
   font-family: Arial, Helvetica, sans-serif;
   color: #41b883;
   height: 100%;
-  font-size: 88%;
+  font-size: 175%;
   overflow: hidden;
+  margin-top: 1%;
 }
 
 #list-th a {
@@ -290,6 +256,90 @@ p.description.title {
 
 router-link {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 1900px) {
+  .welcome {
+    margin-top: 0;
+    font-size: 130%;
+  }
+
+  .book {
+    display: inline-block;
+    width: 200px;
+    height: 360px;
+    box-shadow: 0 0 20px #aaa;
+    margin: 25px;
+    padding: 10px 10px 0 10px;
+    vertical-align: top;
+    transition: height 1s;
+    overflow: hidden;
+  }
+  /* star button */
+  .book:after {
+    font-family: FontAwesome;
+    /* content: "\f006"; */
+    font-size: 35px;
+    position: relative;
+    left: -0.1cm;
+    top: -1.6cm;
+    float: right;
+  }
+
+  .cover {
+    height: 80%;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .cover img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .book p {
+    margin-top: 1%;
+    font-size: auto;
+    text-decoration: none;
+  }
+
+  .book.author {
+    font-size: auto;
+  }
+
+  p.description.title {
+    font-size: 88%;
+  }
+}
+
+@media (max-width: 941px) {
+  .welcome {
+    font-size: 100%;
+  }
+  .books {
+    min-height: 100%;
+  }
+
+  .container {
+    max-width: 700px;
+  }
+  .book {
+    margin: 49px;
+  }
+}
+
+@media (max-width: 730px) {
+  .books {
+    min-height: 100%;
+  }
+  .book {
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin: 25px;
+  }
+  /* .cover {
+  } */
 }
 
 @media only screen and (max-width: 600px) {

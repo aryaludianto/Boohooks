@@ -5,9 +5,11 @@
       <h3>Site Map</h3>
       <ul class="site">
         <li class="site-detail" v-for="value in siteMap" :key="value">
-          <a v-if="value.slice(-2) != 'ls'" :href="value" class="link-detail">{{
+          <a v-if="value.slice(-2) != 'ls'" :href="value" class="link-detail">
+            {{
             value.slice(-2) == "//" ? "Home Page" : "Random Page"
-          }}</a>
+            }}
+          </a>
           <p v-else class="link-detail">Book details</p>
         </li>
       </ul>
@@ -59,6 +61,7 @@ export default Vue.extend({
 .title {
   margin-left: 2%;
   color: #41b883;
+  font-size: 250%;
 }
 
 .footer {
@@ -75,7 +78,7 @@ export default Vue.extend({
 .site {
   height: 100%;
   text-align: left;
-  font-size: 100%;
+  font-size: 200%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -112,14 +115,20 @@ a.link-detail:hover {
 }
 
 .sitemap h3 {
-  font-size: 100%;
+  font-size: 200%;
   margin: auto;
 }
 
-.site {
-  text-align: left;
-  font-size: 100%;
-  margin: auto;
+@media only screen and (max-width: 1900px) {
+  .title {
+    font-size: 150%;
+  }
+  .site {
+    font-size: 100%;
+  }
+  .sitemap h3 {
+    font-size: 100%;
+  }
 }
 
 @media (max-width: 730px) {

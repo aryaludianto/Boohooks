@@ -1,6 +1,10 @@
 <template>
   <div class="random">
-    <Navbar @submit="onEnterNav" @click="onClickNav" v-bind:data="data"></Navbar>
+    <Navbar
+      @submit="onEnterNav"
+      @click="onClickNav"
+      v-bind:data="data"
+    ></Navbar>
     <div class="randomizer">
       <h1>Random Book list</h1>
       <p>click below to randomize the list</p>

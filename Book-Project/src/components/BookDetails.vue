@@ -7,7 +7,9 @@
       <div class="details" :class="show.className">
         <div class="head">
           <h3>{{ bookDetails.volumeInfo.title }} | By</h3>
-          <h3 v-for="author in bookDetails.volumeInfo.authors" :key="author">{{ author }}</h3>
+          <h3 v-for="author in bookDetails.volumeInfo.authors" :key="author">
+            {{ author }}
+          </h3>
         </div>
         <div class="desc">
           <p>Published: {{ bookDetails.volumeInfo.publishedDate }}</p>
@@ -18,9 +20,9 @@
           <p>
             "
             {{
-            bookDetails.volumeInfo.description[0]
-            ? bookDetails.volumeInfo.description
-            : noDesc
+              bookDetails.volumeInfo.description[0]
+                ? bookDetails.volumeInfo.description
+                : noDesc
             }}
             "
           </p>

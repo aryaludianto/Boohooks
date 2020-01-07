@@ -7,9 +7,7 @@
       </div>
       <div class="nav-content nav-content-res" v-bind:class="burgerBar">
         <a href="/" v-bind:class="activeStatus.home">Home</a>
-        <router-link to="/randomPage" v-bind:class="activeStatus.random"
-          >Random</router-link
-        >
+        <router-link to="/randomPage" v-bind:class="activeStatus.random">Random</router-link>
 
         <div class="dropdown">
           <button class="dropbtn">
@@ -22,17 +20,12 @@
               :key="category"
               v-on:click="onClick(category)"
               v-bind:value="category"
-              >{{ category && category }}</a
-            >
+            >{{ category && category }}</a>
           </div>
         </div>
       </div>
       <div class="keyword" v-if="this.$route.name == 'home'">
-        <input
-          v-model="keyword"
-          placeholder="Search"
-          v-on:keyup.enter="onSubmit(keyword)"
-        />
+        <input v-model="keyword" placeholder="Search" v-on:keyup.enter="onSubmit(keyword)" />
       </div>
     </div>
   </div>
@@ -467,11 +460,17 @@ export default Vue.extend({
   }
 
   .dropdown-content {
-    display: none;
+    /* display: none; */
     position: inherit;
     background-color: #f9f9f9;
     overflow: hidden;
     z-index: 1;
+  }
+
+  .dropdown-content {
+    position: inherit;
+    background-color: #f9f9f9;
+    overflow-y: scroll;
   }
 
   .dropdown-content a {
@@ -482,19 +481,19 @@ export default Vue.extend({
     display: block;
     text-align: left;
   }
+}
 
-  @media only screen and (max-width: 450px) {
-    .keyword {
-      margin-left: 16%;
-      width: 229px;
-    }
+@media only screen and (max-width: 450px) {
+  .keyword {
+    margin-left: 16%;
+    width: 229px;
   }
+}
 
-  @media only screen and (max-width: 350px) {
-    .keyword {
-      margin-left: 8%;
-      width: 100%;
-    }
+@media only screen and (max-width: 350px) {
+  .keyword {
+    margin-left: 8%;
+    width: 100%;
   }
 }
 </style>

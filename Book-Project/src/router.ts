@@ -18,14 +18,12 @@ export const router = new Router({
     {
       path: "/bookDetails/:bookDetails",
       name: "BookDetails",
-      // component: () => import("../src/components/BookDetails.vue"),
       component: BookDetails,
       props: true
     },
     {
       path: "/randomPage",
       name: "RandomPage",
-      // component: () => import("../src/components/Random.vue"),
       component: Random,
       props: true
     }

@@ -5,11 +5,11 @@
       <h3>Site Map</h3>
       <ul class="site">
         <li class="site-detail" v-for="value in siteMap" :key="value">
+          <!-- Only showing home page and random Page -->
           <a v-if="value.slice(-2) != 'ls'" :href="value" class="link-detail">
-            {{
-            value.slice(-2) == "//" ? "Home Page" : "Random Page"
-            }}
+            {{ value.slice(-2) == "//" ? "Home Page" : "Random Page" }}
           </a>
+          <!-- without book data, Book details page would be empty -->
           <p v-else class="link-detail">Book details</p>
         </li>
       </ul>

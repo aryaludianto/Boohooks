@@ -52,11 +52,11 @@ export default Vue.extend({
   components: {},
   props: {
     books: Array,
-    keyword: String
+    keyword: String,
   },
   data() {
     return {};
-  }
+  },
 });
 </script>
 
@@ -67,6 +67,7 @@ export default Vue.extend({
   width: 100%;
   display: flex;
   justify-content: center;
+  min-height: 100vh;
 }
 
 .container {

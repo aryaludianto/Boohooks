@@ -8,15 +8,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
-import Navbar from "./components/Navbar.vue";
 
 export default Vue.extend({
   name: "app",
-  components: {
-    // HelloWorld,
-    // Navbar
-  }
 });
 </script>
 

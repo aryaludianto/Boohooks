@@ -7,7 +7,9 @@
       </div>
       <div class="nav-content nav-content-res" v-bind:class="burgerBar">
         <a href="/" v-bind:class="activeStatus.home">Home</a>
-        <router-link to="/randomPage" v-bind:class="activeStatus.random">Random</router-link>
+        <router-link to="/randomPage" v-bind:class="activeStatus.random"
+          >Random</router-link
+        >
 
         <div class="dropdown">
           <button class="dropbtn">
@@ -20,12 +22,17 @@
               :key="category"
               v-on:click="onClick(category)"
               v-bind:value="category"
-            >{{ category && category }}</a>
+              >{{ category && category }}</a
+            >
           </div>
         </div>
       </div>
       <div class="keyword" v-if="this.$route.name == 'home'">
-        <input v-model="keyword" placeholder="Search" v-on:keyup.enter="onSubmit(keyword)" />
+        <input
+          v-model="keyword"
+          placeholder="Search"
+          v-on:keyup.enter="onSubmit(keyword)"
+        />
       </div>
     </div>
   </div>
@@ -37,7 +44,7 @@ import Vue from "vue";
 export default Vue.extend({
   name: "Navbar",
   props: {
-    data: Array
+    data: Array,
   },
   created() {
     //to determine which nav-bar buttons are active
@@ -51,7 +58,7 @@ export default Vue.extend({
     return {
       keyword: null,
       burgerBar: "",
-      activeStatus: { home: "", random: "" }
+      activeStatus: { home: "", random: "" },
     };
   },
   methods: {
@@ -69,7 +76,7 @@ export default Vue.extend({
       this.burgerBar === ""
         ? (this.burgerBar = "active")
         : (this.burgerBar = "");
-    }
+    },
   },
   computed: {
     filteredCategories() {
@@ -87,8 +94,8 @@ export default Vue.extend({
       );
       arr.splice(0, 0, "All");
       return arr;
-    }
-  }
+    },
+  },
 });
 </script>
 
@@ -111,7 +118,7 @@ export default Vue.extend({
 .title1 {
   margin-left: 2%;
   color: #41b883;
-  font-size: 300%;
+  font-size: 50px;
 }
 
 .nav-content {
@@ -126,7 +133,7 @@ export default Vue.extend({
   position: fixed;
   top: 0;
   width: 100%;
-  height: 10.5%;
+  height: 50px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
@@ -227,7 +234,7 @@ export default Vue.extend({
   height: 150%;
 }
 
-@media only screen and (max-width: 1900px) {
+/* @media only screen and (max-width: 1950px) {
   .title {
     margin-left: 2%;
     color: #41b883;
@@ -237,7 +244,7 @@ export default Vue.extend({
   .title1 {
     margin-left: 2%;
     color: #41b883;
-    font-size: 150%;
+    font-size: 100%;
   }
 
   .nav-content {
@@ -252,7 +259,7 @@ export default Vue.extend({
     position: fixed;
     top: 0;
     width: 100%;
-    height: 10.5%;
+    height: 30px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
@@ -346,7 +353,7 @@ export default Vue.extend({
     font-size: 100%;
     width: 100%;
   }
-}
+} */
 
 @media only screen and (max-width: 860px) {
   .dropdown {

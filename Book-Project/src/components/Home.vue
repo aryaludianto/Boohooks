@@ -25,7 +25,7 @@ export default Vue.extend({
     Navbar,
     Book,
     Footer,
-    Loading
+    Loading,
   },
   props: {},
   data() {
@@ -33,9 +33,9 @@ export default Vue.extend({
       loading: false,
       data: null,
       error: null,
-      keyword: "all",
+      keyword: "star wars",
       filterBy: null,
-      url: "https://www.googleapis.com/books/v1/volumes?q="
+      url: "https://www.googleapis.com/books/v1/volumes?q=",
     };
   },
   created() {
@@ -46,25 +46,25 @@ export default Vue.extend({
   },
   watch: {
     // call again the method if the route changes
-    $route: "fetchData"
+    $route: "fetchData",
   },
   methods: {
     fetchData() {
       this.error = this.categories = null;
       this.loading = true;
       fetch(`${this.url}${this.keyword}`, {
-        method: "GET"
+        method: "GET",
       })
-        .then(response => {
+        .then((response) => {
           if (response.ok) {
             return response.json();
           } else throw new Error(response.statusText);
         })
-        .then(data => {
+        .then((data) => {
           this.data = data.items;
           this.loading = false;
         })
-        .catch(err => {
+        .catch((err) => {
           this.error = err.toString();
         });
     },
@@ -76,7 +76,7 @@ export default Vue.extend({
     onClickNav(val) {
       //function to retreive filter value from nav-bar and diplay Book/Books based Filter categories from user
       this.filterBy = val;
-    }
+    },
   },
   computed: {
     displayData() {
@@ -85,14 +85,14 @@ export default Vue.extend({
         this.filterBy != null && this.filterBy != "All"
           ? this.data &&
             Object.values(this.data).filter(
-              data =>
+              (data) =>
                 data.volumeInfo.categories != undefined &&
                 data.volumeInfo.categories[0] === this.filterBy
             )
           : this.data;
       return filtered;
-    }
-  }
+    },
+  },
 });
 </script>
 
@@ -101,7 +101,5 @@ export default Vue.extend({
   margin: 0;
   height: 100%;
   width: 100%;
-  /* display:grid;
-  grid-template-rows: 20% 80%; */
 }
 </style>

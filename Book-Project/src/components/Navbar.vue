@@ -2,6 +2,7 @@
   <div class="navbar" v-bind:class="burgerBar">
     <div class="desktop-res" v-bind:class="burgerBar">
       <h2 class="title1">Boohooks</h2>
+
       <div class="nav" v-bind:class="burgerBar" v-on:click="burgerBarClick">
         <h2 class="title">Boohooks</h2>
       </div>
@@ -118,7 +119,7 @@ export default Vue.extend({
 .title1 {
   margin-left: 2%;
   color: #41b883;
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .nav-content {
@@ -133,7 +134,7 @@ export default Vue.extend({
   position: fixed;
   top: 0;
   width: 100%;
-  height: 50px;
+  height: 60px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
@@ -143,7 +144,7 @@ export default Vue.extend({
 
 .navbar a {
   float: left;
-  font-size: 210%;
+  font-size: 100%;
   color: black;
   text-align: center;
   padding: 14px 16px;
@@ -163,11 +164,11 @@ export default Vue.extend({
 }
 
 .dropbtn {
-  width: 200%;
+  width: 100%;
 }
 
 .dropdown .dropbtn {
-  font-size: 210%;
+  font-size: 100%;
   border: none;
   outline: none;
   color: black;
@@ -175,7 +176,7 @@ export default Vue.extend({
   padding: auto;
   background-color: inherit;
   font-family: inherit;
-  margin: 0;
+  /* margin-left: 100%; */
   /* display: flex; */
   flex-direction: row;
   width: 100%;
@@ -205,7 +206,7 @@ export default Vue.extend({
   text-decoration: none;
   display: block;
   text-align: left;
-  width: 145px;
+  width: 220px;
 }
 
 .dropdown-content a:hover {
@@ -230,11 +231,11 @@ export default Vue.extend({
 .keyword input {
   margin: 5% 0;
   width: 362px;
-  font-size: 195%;
-  height: 150%;
+  font-size: 100%;
+  height: 100%;
 }
 
-/* @media only screen and (max-width: 1950px) {
+@media only screen and (min-width: 2500px) {
   .title {
     margin-left: 2%;
     color: #41b883;
@@ -259,7 +260,7 @@ export default Vue.extend({
     position: fixed;
     top: 0;
     width: 100%;
-    height: 30px;
+    height: 1000px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
@@ -289,7 +290,7 @@ export default Vue.extend({
   }
 
   .dropdown .dropbtn {
-    font-size: 100%;
+    font-size: 50%;
     border: none;
     outline: none;
     color: black;
@@ -298,7 +299,7 @@ export default Vue.extend({
     background-color: inherit;
     font-family: inherit;
     margin: 0;
-    /* display: flex; */
+    display: flex;
     flex-direction: row;
     width: 100%;
     text-align: right;
@@ -353,7 +354,7 @@ export default Vue.extend({
     font-size: 100%;
     width: 100%;
   }
-} */
+}
 
 @media only screen and (max-width: 860px) {
   .dropdown {

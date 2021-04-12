@@ -211,7 +211,7 @@ router-link {
   text-decoration: none;
 }
 
-@media only screen and (max-width: 1900px) {
+@media only screen and (min-width: 1900px) {
   .welcome {
     margin-top: 0;
     font-size: 130%;

@@ -26,7 +26,7 @@ export default Vue.extend({
   props: {},
   data() {
     return {
-      siteMap: null
+      siteMap: null,
     };
   },
   created() {
@@ -51,8 +51,8 @@ export default Vue.extend({
         "https://test-project-arya.web.app/"
       );
       return list;
-    }
-  }
+    },
+  },
 });
 </script>
 
@@ -61,13 +61,13 @@ export default Vue.extend({
 .title {
   margin-left: 2%;
   color: #41b883;
-  font-size: 250%;
+  font-size: 100%;
 }
 
 .footer {
   margin-bottom: 0;
   width: 100%;
-  height: 200px;
+  height: 100px;
   background-color: white;
   box-shadow: 8px 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
@@ -78,7 +78,7 @@ export default Vue.extend({
 .site {
   height: 100%;
   text-align: left;
-  font-size: 200%;
+  font-size: 100%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -115,7 +115,7 @@ a.link-detail:hover {
 }
 
 .sitemap h3 {
-  font-size: 200%;
+  font-size: 100%;
   margin: auto;
 }
 

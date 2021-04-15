@@ -1,5 +1,5 @@
 # Boohooks
-Display API's from Google books and Vuejs + Typescript based 
+Display API's from Google books and Vue.js
 
 
 ## To start this Project

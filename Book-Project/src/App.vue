@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <!-- <navbar /> -->
     <router-view></router-view>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
   </div>
 </template>
 

@@ -1,12 +1,12 @@
 import Vue from "vue";
-import Router from "vue-router";
+import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../src/components/Home.vue";
 import BookDetails from "../src/components/BookDetails.vue";
 import Random from "../src/components/Random.vue";
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
-const routes = [
+const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "home",
@@ -26,7 +26,7 @@ const routes = [
   }
 ];
 
-export const router = new Router({
+export const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes

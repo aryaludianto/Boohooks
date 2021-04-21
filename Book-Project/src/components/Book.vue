@@ -194,7 +194,7 @@ p.description.title {
   font-family: Arial, Helvetica, sans-serif;
   color: #41b883;
   height: 100%;
-  font-size: 175%;
+  font-size: 20px;
   overflow: hidden;
   margin-top: 1%;
 }
@@ -330,6 +330,10 @@ router-link {
 
   .container h1 {
     font-size: 30px;
+  }
+
+  p.description.title {
+    font-size: 12px;
   }
 }
 

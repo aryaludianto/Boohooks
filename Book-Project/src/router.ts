@@ -6,28 +6,26 @@ import Random from "../src/components/Random.vue";
 
 Vue.use(VueRouter);
 
-const routes: Array<RouteConfig> = [
-  {
-    path: "/",
-    name: "home",
-    component: Home
-  },
-  {
-    path: "/bookDetails/:bookDetails",
-    name: "BookDetails",
-    component: BookDetails,
-    props: true
-  },
-  {
-    path: "/randomPage",
-    name: "RandomPage",
-    component: Random,
-    props: true
-  }
-];
-
-export const router = new VueRouter({
+export default new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes: [
+    {
+      path: "/",
+      component: Home,
+      name: "home"
+    },
+    {
+      path: "/bookDetails/:bookDetails",
+      component: BookDetails,
+      name: "BookDetails",
+      props: true
+    },
+    {
+      path: "/randomPage",
+      name: "RandomPage",
+      component: Random,
+      props: true
+    }
+  ]
 });
